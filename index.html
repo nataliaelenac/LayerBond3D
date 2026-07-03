@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LayerBond3D | Magazin Online Oficial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        body { background-color: #0b0c10; color: #c5c6c7; overflow-x: hidden; padding-top: 100px; }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+        
+        /* Header cu emblema ta oficiala */
+        header { background: rgba(11, 12, 16, 0.95); border-bottom: 1px solid #1f2833; position: fixed; width: 100%; top: 0; z-index: 100; backdrop-filter: blur(10px); }
+        .header-flex { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; }
+        .logo-container { display: flex; align-items: center; }
+        
+        /* Aici se regleaza dimensiunea emblemei tale */
+        .logo-img { height: 60px; max-width: 220px; display: block; object-fit: contain; }
+        
+        .cart-btn { background: #1f2833; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: 600; border: 1px solid #0056ff; transition: 0.3s; color: #fff; }
+        .cart-btn:hover { background: #0056ff; box-shadow: 0 0 15px rgba(0,86,255,0.5); }
+
+        /* Banner de branding sub header */
+        .hero-banner {
+            height: 12vh;
+            background: linear-gradient(rgba(11, 12, 16, 0.2), rgba(11, 12, 16, 1)), #14171c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid #22262e;
+            margin-bottom: 20px;
+        }
+        .hero-text { text-align: center; color: #fff; font-size: 22px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+        .hero-text span { color: #0056ff; }
+
+        /* Grila curata de produse individuale */
+        .products-title { text-align: center; margin: 30px 0; font-size: 26px; color: #fff; letter-spacing: 1px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 60px; }
+        .card { background: #14171c; border: 1px solid #22262e; border-radius: 8px; padding: 20px; text-align: center; display: flex; flex-direction: column; justify-content: space-between; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); border-color: #0056ff; box-shadow: 0 5px 15px rgba(0,86,255,0.1); }
+        
+        /* Imaginile se vor incarca intregi, fara taieri din colaje */
+        .prod-img { width: 100%; height: 240px; object-fit: cover; border-radius: 6px; margin-bottom: 15px; background: #0b0c10; border: 1px solid #22262e; }
+        
+        .prod-title { font-size: 18px; color: #fff; margin-bottom: 4px; font-weight: 600; text-transform: uppercase; }
+        .prod-desc { font-size: 13px; color: #888; margin-bottom: 12px; }
+        .prod-price { font-size: 19px; color: #0056ff; font-weight: 700; margin-bottom: 15px; }
+        
+        /* Selector Culori */
+        .colors { display: flex; justify-content: center; gap: 10px; margin-bottom: 15px; }
+        .color-dot { width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid #444; transition: 0.2s; }
+        .color-dot.active { transform: scale(1.2); border-color: #0056ff; box-shadow: 0 0 8px #0056ff; }
+        .buy-btn { width: 100%; padding: 12px; background: transparent; border: 1px solid #0056ff; color: #fff; font-weight: 600; cursor: pointer; border-radius: 4px; transition: 0.3s; }
+        .buy-btn:hover { background: #0056ff; }
+
+        /* Cos cumparaturi lateral */
+        .sidebar { position: fixed; top: 0; right: -400px; width: 400px; height: 100%; background: #11141a; box-shadow: -5px 0 15px rgba(0,0,0,0.6); z-index: 102; transition: 0.3s ease; padding: 25px; display: flex; flex-direction: column; }
+        .sidebar.open { right: 0; }
+        .side-head { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #22252c; padding-bottom: 15px; margin-bottom: 20px; color: #fff; }
+        .close-btn { background: none; border: none; color: #fff; font-size: 30px; cursor: pointer; }
+        .items-list { flex-grow: 1; overflow-y: auto; }
+        .cart-item { background: #1c1f26; padding: 12px; border-radius: 6px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+        .del-btn { background: none; border: none; color: #ff4d4d; cursor: pointer; font-weight: 600; }
+        .side-foot { border-top: 1px solid #22252c; padding-top: 20px; }
+        .total-box { font-size: 18px; color: #fff; font-weight: 600; display: flex; justify-content: space-between; margin-bottom: 15px; }
+        .checkout-btn { width: 100%; padding: 15px; background: #0056ff; color: #fff; border: none; border-radius: 4px; font-weight: 700; font-size: 16px; cursor: pointer; transition: 0.3s; }
+        .checkout-btn:hover { background: #0044cc; }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 101; display: none; }
+        .overlay.open { display: block; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-flex">
+            <div class="logo-container">
+                <img src="image_10.png" alt="LayerBond3D Logo" class="logo-img" onerror="this.src='image_9.png';">
+            </div>
+            <div class="cart-btn" onclick="toggleCart()">Coș (<span id="count">0</span>)</div>
+        </div>
+    </header>
+
+    <section class="hero-banner">
+        <div class="hero-text">ACCESORII PRACTICE. <span>DESIGN PERFECT.</span></div>
+    </section>
+
+    <main class="container">
+        <h2 class="products-title">Catalog Produse Auto 3D</h2>
+        <div class="grid" id="products-container"></div>
+    </main>
+
+    <div class="sidebar" id="sidebar">
+        <div class="side-head">
+            <h3>Coșul tău</h3>
+            <button class="close-btn" onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="items-list" id="cart-list"></div>
+        <div class="side-foot">
+            <div class="total-box"><span>Total:</span><span id="total-val">0.00 RON</span></div>
+            <button class="checkout-btn" onclick="sendToWhatsApp()">Trimite Comanda pe WhatsApp</button>
+        </div>
+    </div>
+    <div class="overlay" id="overlay" onclick="toggleCart()"></div>
+
+    <script>
+        // Array-ul foloseste acum calea directa catre imaginile tale individuale si curate
+        const products = [
+            { id: 1, title: "Suport Telefon", desc: "Montare în grila de ventilație", price: 39.99, image: "suport_telefon.png" }, 
+            { id: 2, title: "Organizator Consolă", desc: "Pentru depozitare eficientă", price: 50.00, image: "organizator_consola.png" },
+            { id: 3, title: "Suport Pahare", desc: "Insert anti-alunecare", price: 79.99, image: "suport_pahare.png" },
+            { id: 4, title: "Suport MagSafe", desc: "Fixare sigură pentru încărcare", price: 59.99, image: "suport_magsafe.png" },
+            { id: 5, title: "Suport OBD", desc: "Acces facil la portul OBD", price: 29.99, image: "suport_obd.png" },
+            { id: 6, title: "Organizator Portbagaj", desc: "Fixare și organizare", price: 120.00, image: "organizator_portbagaj.png" },
+            { id: 7, title: "Suport Chei", desc: "Loc dedicat pentru chei", price: 25.00, image: "suport_chei.png" },
+            { id: 8, title: "Capac Șuruburi", desc: "Finisaj estetic și protecție", price: 15.00, image: "capac_suruburi.png" },
+            { id: 9, title: "Clipsuri Plastic", desc: "Înlocuiesc piesele originale", price: 19.99, image: "clipsuri_plastic.png" },
+            { id: 10, title: "Suport Cameră", desc: "Montare stabilă pe bord", price: 34.99, image: "suport_camera.png" },
+            { id: 11, title: "Ramă Butoane", desc: "Personalizare și protecție", price: 45.00, image: "rama_butoane.png" }
+        ];
+
+        let cart = [];
+
+        function renderProducts() {
+            const container = document.getElementById('products-container');
+            container.innerHTML = products.map(p => `
+                <div class="card" id="p-${p.id}">
+                    <div>
+                        <img src="${p.image}" class="prod-img" alt="${p.title}" onerror="this.src='https://via.placeholder.com/280x240/14171c/fff?text=Fara+Imagine';">
+                        <h3 class="prod-title">${p.title}</h3>
+                        <div class="prod-desc">${p.desc}</div>
+                        <div class="prod-price">${p.price.toFixed(2)} RON</div>
+                    </div>
+                    <div>
+                        <div class="colors" data-color="Negru">
+                            <span class="color-dot active" style="background:#111" onclick="selColor(this,'Negru')"></span>
+                            <span class="color-dot" style="background:#fff" onclick="selColor(this,'Alb')"></span>
+                            <span class="color-dot" style="background:#0056ff" onclick="selColor(this,'Albastru')"></span>
+                        </div>
+                        <button class="buy-btn" onclick="add(${p.id})">Adaugă în coș</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function selColor(el, color) {
+            const parent = el.parentElement;
+            parent.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
+            el.classList.add('active');
+            parent.setAttribute('data-color', color);
+        }
+
+        function toggleCart() {
+            document.getElementById('sidebar').classList.toggle('open');
+            document.getElementById('overlay').classList.toggle('open');
+        }
+
+        function add(id) {
+            const p = products.find(prod => prod.id === id);
+            const color = document.getElementById(`p-${id}`).querySelector('.colors').getAttribute('data-color');
+            const exist = cart.find(i => i.id === id && i.color === color);
+            if(exist) exist.qty++; else cart.push({ ...p, color, qty: 1 });
+            updateUI();
+            toggleCart();
+        }
+
+        function remove(idx) { cart.splice(idx, 1); updateUI(); }
+
+        function updateUI() {
+            document.getElementById('count').innerText = cart.reduce((a, b) => a + b.qty, 0);
+            document.getElementById('cart-list').innerHTML = cart.map((item, idx) => `
+                <div class="cart-item">
+                    <div>
+                        <h4 style="color:#fff;font-size:14px;">${item.title}</h4>
+                        <small style="color:#aaa;">${item.color} | x${item.qty}</small>
+                    </div>
+                    <button class="del-btn" onclick="remove(${idx})">Șterge</button>
+                </div>
+            `).join('');
+            document.getElementById('total-val').innerText = cart.reduce((a, b) => a + (b.price * b.qty), 0).toFixed(2) + " RON";
+        }
+
+        function sendToWhatsApp() {
+            if(!cart.length) return alert("Coșul e gol!");
+            let numarTelefon = "40700000000"; // <-- Pune numărul tău de WhatsApp aici!
+            let text = "Salut LayerBond3D! Doresc să plasez o comandă:\n\n";
+            cart.forEach(item => {
+                text += `• ${item.title} [Culoare: ${item.color}] x${item.qty} - ${(item.price * item.qty).toFixed(2)} RON\n`;
+            });
+            text += `\nTotal de plată: ${document.getElementById('total-val').innerText}`;
+            window.open(`https://wa.me/${numarTelefon}?text=${encodeURIComponent(text)}`);
+        }
+
+        window.onload = renderProducts;
+    </script>
+</body>
+</html>
