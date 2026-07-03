@@ -7,21 +7,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
-        body { background-color: #0b0c10; color: #c5c6c7; overflow-x: hidden; padding-top: 100px; }
+        body { background-color: #0b0c10; color: #c5c6c7; overflow-x: hidden; padding-top: 110px; }
         .container { width: 90%; max-width: 1200px; margin: 0 auto; }
         
-        /* Header cu emblema ta oficiala */
         header { background: rgba(11, 12, 16, 0.95); border-bottom: 1px solid #1f2833; position: fixed; width: 100%; top: 0; z-index: 100; backdrop-filter: blur(10px); }
-        .header-flex { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; }
+        .header-flex { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; }
         .logo-container { display: flex; align-items: center; }
+        .logo-img { height: 65px; width: auto; border-radius: 8px; display: block; object-fit: contain; }
         
-        /* Aici se regleaza dimensiunea emblemei tale */
-        .logo-img { height: 60px; max-width: 220px; display: block; object-fit: contain; }
-        
-        .cart-btn { background: #1f2833; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: 600; border: 1px solid #0056ff; transition: 0.3s; color: #fff; }
+        .cart-btn { background: #1f2833; padding: 12px 24px; border-radius: 6px; cursor: pointer; font-weight: 600; border: 1px solid #0056ff; transition: 0.3s; color: #fff; }
         .cart-btn:hover { background: #0056ff; box-shadow: 0 0 15px rgba(0,86,255,0.5); }
 
-        /* Banner de branding sub header */
         .hero-banner {
             height: 12vh;
             background: linear-gradient(rgba(11, 12, 16, 0.2), rgba(11, 12, 16, 1)), #14171c;
@@ -34,27 +30,23 @@
         .hero-text { text-align: center; color: #fff; font-size: 22px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
         .hero-text span { color: #0056ff; }
 
-        /* Grila curata de produse individuale */
         .products-title { text-align: center; margin: 30px 0; font-size: 26px; color: #fff; letter-spacing: 1px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 60px; }
         .card { background: #14171c; border: 1px solid #22262e; border-radius: 8px; padding: 20px; text-align: center; display: flex; flex-direction: column; justify-content: space-between; transition: 0.3s; }
         .card:hover { transform: translateY(-5px); border-color: #0056ff; box-shadow: 0 5px 15px rgba(0,86,255,0.1); }
         
-        /* Imaginile se vor incarca intregi, fara taieri din colaje */
-        .prod-img { width: 100%; height: 240px; object-fit: cover; border-radius: 6px; margin-bottom: 15px; background: #0b0c10; border: 1px solid #22262e; }
+        .prod-img { width: 100%; height: 220px; object-fit: cover; border-radius: 6px; margin-bottom: 15px; border: 1px solid #22262e; }
         
         .prod-title { font-size: 18px; color: #fff; margin-bottom: 4px; font-weight: 600; text-transform: uppercase; }
         .prod-desc { font-size: 13px; color: #888; margin-bottom: 12px; }
         .prod-price { font-size: 19px; color: #0056ff; font-weight: 700; margin-bottom: 15px; }
         
-        /* Selector Culori */
         .colors { display: flex; justify-content: center; gap: 10px; margin-bottom: 15px; }
         .color-dot { width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid #444; transition: 0.2s; }
         .color-dot.active { transform: scale(1.2); border-color: #0056ff; box-shadow: 0 0 8px #0056ff; }
         .buy-btn { width: 100%; padding: 12px; background: transparent; border: 1px solid #0056ff; color: #fff; font-weight: 600; cursor: pointer; border-radius: 4px; transition: 0.3s; }
         .buy-btn:hover { background: #0056ff; }
 
-        /* Cos cumparaturi lateral */
         .sidebar { position: fixed; top: 0; right: -400px; width: 400px; height: 100%; background: #11141a; box-shadow: -5px 0 15px rgba(0,0,0,0.6); z-index: 102; transition: 0.3s ease; padding: 25px; display: flex; flex-direction: column; }
         .sidebar.open { right: 0; }
         .side-head { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #22252c; padding-bottom: 15px; margin-bottom: 20px; color: #fff; }
@@ -75,7 +67,7 @@
     <header>
         <div class="container header-flex">
             <div class="logo-container">
-                <img src="image_10.png" alt="LayerBond3D Logo" class="logo-img" onerror="this.src='image_9.png';">
+                <img src="IMG_7684.png" alt="LayerBond3D Logo" class="logo-img">
             </div>
             <div class="cart-btn" onclick="toggleCart()">Coș (<span id="count">0</span>)</div>
         </div>
@@ -104,19 +96,15 @@
     <div class="overlay" id="overlay" onclick="toggleCart()"></div>
 
     <script>
-        // Array-ul foloseste acum calea directa catre imaginile tale individuale si curate
         const products = [
-            { id: 1, title: "Suport Telefon", desc: "Montare în grila de ventilație", price: 39.99, image: "suport_telefon.png" }, 
-            { id: 2, title: "Organizator Consolă", desc: "Pentru depozitare eficientă", price: 50.00, image: "organizator_consola.png" },
-            { id: 3, title: "Suport Pahare", desc: "Insert anti-alunecare", price: 79.99, image: "suport_pahare.png" },
-            { id: 4, title: "Suport MagSafe", desc: "Fixare sigură pentru încărcare", price: 59.99, image: "suport_magsafe.png" },
-            { id: 5, title: "Suport OBD", desc: "Acces facil la portul OBD", price: 29.99, image: "suport_obd.png" },
-            { id: 6, title: "Organizator Portbagaj", desc: "Fixare și organizare", price: 120.00, image: "organizator_portbagaj.png" },
-            { id: 7, title: "Suport Chei", desc: "Loc dedicat pentru chei", price: 25.00, image: "suport_chei.png" },
-            { id: 8, title: "Capac Șuruburi", desc: "Finisaj estetic și protecție", price: 15.00, image: "capac_suruburi.png" },
-            { id: 9, title: "Clipsuri Plastic", desc: "Înlocuiesc piesele originale", price: 19.99, image: "clipsuri_plastic.png" },
-            { id: 10, title: "Suport Cameră", desc: "Montare stabilă pe bord", price: 34.99, image: "suport_camera.png" },
-            { id: 11, title: "Ramă Butoane", desc: "Personalizare și protecție", price: 45.00, image: "rama_butoane.png" }
+            { id: 1, title: "Suport Telefon", desc: "Montare în grila de ventilație", price: 39.99, img: "IMG_7719.jpeg" }, 
+            { id: 2, title: "Organizator Consolă", desc: "Pentru depozitare eficientă", price: 50.00, img: "IMG_7720.jpeg" },
+            { id: 3, title: "Suport Pahare", desc: "Insert anti-alunecare", price: 79.99, img: "IMG_7721.jpeg" },
+            { id: 4, title: "Suport Chei", desc: "Loc dedicat pentru chei", price: 25.00, img: "IMG_7722.png" },
+            { id: 5, title: "Organizator Portbagaj", desc: "Fixare și organizare", price: 120.00, img: "IMG_7723.jpeg" },
+            { id: 6, title: "Suport OBD", desc: "Acces facil la portul OBD", price: 29.99, img: "IMG_7724.jpeg" },
+            { id: 7, title: "Suport MagSafe", desc: "Fixare sigură pentru încărcare", price: 59.99, img: "IMG_7725.jpeg" },
+            { id: 8, title: "Ramă Butoane", desc: "Personalizare și protecție", price: 45.00, img: "IMG_7726.jpeg" }
         ];
 
         let cart = [];
@@ -126,7 +114,7 @@
             container.innerHTML = products.map(p => `
                 <div class="card" id="p-${p.id}">
                     <div>
-                        <img src="${p.image}" class="prod-img" alt="${p.title}" onerror="this.src='https://via.placeholder.com/280x240/14171c/fff?text=Fara+Imagine';">
+                        <img src="${p.img}" class="prod-img" alt="${p.title}">
                         <h3 class="prod-title">${p.title}</h3>
                         <div class="prod-desc">${p.desc}</div>
                         <div class="prod-price">${p.price.toFixed(2)} RON</div>
@@ -182,7 +170,7 @@
 
         function sendToWhatsApp() {
             if(!cart.length) return alert("Coșul e gol!");
-            let numarTelefon = "40700000000"; // <-- Pune numărul tău de WhatsApp aici!
+            let numarTelefon = "40725516346"; 
             let text = "Salut LayerBond3D! Doresc să plasez o comandă:\n\n";
             cart.forEach(item => {
                 text += `• ${item.title} [Culoare: ${item.color}] x${item.qty} - ${(item.price * item.qty).toFixed(2)} RON\n`;
@@ -195,3 +183,6 @@
     </script>
 </body>
 </html>
+
+
+    
