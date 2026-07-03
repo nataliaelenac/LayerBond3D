@@ -3,50 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LayerBond3D | Magazin Online Oficial</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>LayerBond3D | Magazin Online Oficial - Accesorii Auto 3D</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* Reset & Stiluri Globale */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
-        body { background-color: #0b0c10; color: #c5c6c7; overflow-x: hidden; padding-top: 110px; }
+        html { scroll-behavior: smooth; }
+        body { background-color: #0b0c10; color: #c5c6c7; overflow-x: hidden; padding-top: 80px; font-weight: 400; }
         .container { width: 90%; max-width: 1200px; margin: 0 auto; }
         
-        header { background: rgba(11, 12, 16, 0.95); border-bottom: 1px solid #1f2833; position: fixed; width: 100%; top: 0; z-index: 100; backdrop-filter: blur(10px); }
-        .header-flex { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; }
+        /* Navigație Premium */
+        header { background: rgba(11, 12, 16, 0.95); border-bottom: 1px solid #1f2833; position: fixed; width: 100%; top: 0; z-index: 100; backdrop-filter: blur(10px); transition: all 0.3s ease; }
+        .header-flex { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; }
         .logo-container { display: flex; align-items: center; }
-        .logo-img { height: 65px; width: auto; border-radius: 8px; display: block; object-fit: contain; }
+        .logo-img { height: 60px; width: auto; border-radius: 8px; display: block; object-fit: contain; }
         
-        .cart-btn { background: #1f2833; padding: 12px 24px; border-radius: 6px; cursor: pointer; font-weight: 600; border: 1px solid #0056ff; transition: 0.3s; color: #fff; }
+        nav a { color: #c5c6c7; text-decoration: none; margin: 0 15px; font-weight: 500; font-size: 14px; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+        nav a:hover { color: #0056ff; }
+        
+        .cart-btn { background: #1f2833; padding: 12px 24px; border-radius: 6px; cursor: pointer; font-weight: 600; border: 1px solid #0056ff; transition: 0.3s; color: #fff; display: flex; align-items: center; gap: 8px; }
         .cart-btn:hover { background: #0056ff; box-shadow: 0 0 15px rgba(0,86,255,0.5); }
 
-        .hero-banner {
-            height: 12vh;
-            background: linear-gradient(rgba(11, 12, 16, 0.2), rgba(11, 12, 16, 1)), #14171c;
+        /* Secțiunea Hero (Prezentare) */
+        .hero {
+            min-height: 60vh;
+            background: linear-gradient(rgba(11, 12, 16, 0.6), rgba(11, 12, 16, 1)), url('IMG_7723.jpeg') center/cover no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-bottom: 1px solid #22262e;
-            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 1px solid #1f2833;
+            padding: 40px 0;
         }
-        .hero-text { text-align: center; color: #fff; font-size: 22px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
-        .hero-text span { color: #0056ff; }
+        .hero-content h1 { font-size: 42px; font-weight: 700; color: #fff; margin-bottom: 15px; letter-spacing: 2px; }
+        .hero-content h1 span { color: #0056ff; }
+        .hero-content p { font-size: 18px; color: #8892b0; max-width: 600px; margin: 0 auto 30px auto; line-height: 1.6; }
+        .cta-btn { display: inline-block; padding: 15px 35px; background: #0056ff; color: #fff; text-decoration: none; font-weight: 700; border-radius: 6px; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
+        .cta-btn:hover { background: #0044cc; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,86,255,0.3); }
 
-        .products-title { text-align: center; margin: 30px 0; font-size: 26px; color: #fff; letter-spacing: 1px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 60px; }
-        .card { background: #14171c; border: 1px solid #22262e; border-radius: 8px; padding: 20px; text-align: center; display: flex; flex-direction: column; justify-content: space-between; transition: 0.3s; }
-        .card:hover { transform: translateY(-5px); border-color: #0056ff; box-shadow: 0 5px 15px rgba(0,86,255,0.1); }
+        /* Secțiunea Caracteristici (De ce noi?) */
+        .features { padding: 60px 0; background: #14171c; text-align: center; border-bottom: 1px solid #22262e; }
+        .section-title { font-size: 30px; color: #fff; margin-bottom: 40px; text-transform: uppercase; letter-spacing: 1px; }
+        .section-title span { color: #0056ff; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .feature-box { padding: 30px; background: #0b0c10; border: 1px solid #22262e; border-radius: 8px; transition: 0.3s; }
+        .feature-box:hover { border-color: #0056ff; transform: translateY(-5px); }
+        .feature-box h3 { color: #fff; font-size: 18px; margin-bottom: 15px; }
+        .feature-box p { color: #888; font-size: 14px; line-height: 1.5; }
+
+        /* Catalog Produse */
+        .shop-section { padding: 80px 0; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .card { background: #14171c; border: 1px solid #22262e; border-radius: 8px; padding: 20px; text-align: center; display: flex; flex-direction: column; justify-content: space-between; transition: 0.3s; opacity: 0; transform: translateY(20px); animation: fadeInUp 0.6s forwards; }
+        .card:hover { transform: translateY(-5px); border-color: #0056ff; box-shadow: 0 5px 15px rgba(0,86,255,0.15); }
         
-        .prod-img { width: 100%; height: 220px; object-fit: cover; border-radius: 6px; margin-bottom: 15px; border: 1px solid #22262e; }
+        .prod-img-wrapper { width: 100%; height: 240px; overflow: hidden; border-radius: 6px; margin-bottom: 15px; border: 1px solid #22262e; background: #0b0c10; }
+        .prod-img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s ease; }
+        .card:hover .prod-img { transform: scale(1.05); }
         
-        .prod-title { font-size: 18px; color: #fff; margin-bottom: 4px; font-weight: 600; text-transform: uppercase; }
-        .prod-desc { font-size: 13px; color: #888; margin-bottom: 12px; }
-        .prod-price { font-size: 19px; color: #0056ff; font-weight: 700; margin-bottom: 15px; }
+        .prod-title { font-size: 18px; color: #fff; margin-bottom: 6px; font-weight: 600; text-transform: uppercase; }
+        .prod-desc { font-size: 13px; color: #888; margin-bottom: 15px; min-height: 38px; line-height: 1.4; }
+        .prod-price { font-size: 20px; color: #0056ff; font-weight: 700; margin-bottom: 15px; }
         
         .colors { display: flex; justify-content: center; gap: 10px; margin-bottom: 15px; }
         .color-dot { width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid #444; transition: 0.2s; }
         .color-dot.active { transform: scale(1.2); border-color: #0056ff; box-shadow: 0 0 8px #0056ff; }
-        .buy-btn { width: 100%; padding: 12px; background: transparent; border: 1px solid #0056ff; color: #fff; font-weight: 600; cursor: pointer; border-radius: 4px; transition: 0.3s; }
+        .buy-btn { width: 100%; padding: 12px; background: transparent; border: 1px solid #0056ff; color: #fff; font-weight: 600; cursor: pointer; border-radius: 4px; transition: 0.3s; text-transform: uppercase; font-size: 13px; letter-spacing: 1px; }
         .buy-btn:hover { background: #0056ff; }
 
+        /* Secțiunea FAQ (Întrebări Frecvente) */
+        .faq-section { padding: 60px 0; background: #14171c; border-top: 1px solid #22262e; }
+        .faq-grid { max-width: 800px; margin: 0 auto; }
+        .faq-item { background: #0b0c10; border: 1px solid #22262e; border-radius: 6px; margin-bottom: 15px; padding: 20px; }
+        .faq-item h3 { color: #fff; font-size: 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        .faq-item h3::before { content: "→"; color: #0056ff; font-weight: bold; }
+        .faq-item p { color: #888; font-size: 14px; line-height: 1.5; }
+
+        /* Coșul Sidebar */
         .sidebar { position: fixed; top: 0; right: -400px; width: 400px; height: 100%; background: #11141a; box-shadow: -5px 0 15px rgba(0,0,0,0.6); z-index: 102; transition: 0.3s ease; padding: 25px; display: flex; flex-direction: column; }
         .sidebar.open { right: 0; }
         .side-head { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #22252c; padding-bottom: 15px; margin-bottom: 20px; color: #fff; }
@@ -56,10 +89,30 @@
         .del-btn { background: none; border: none; color: #ff4d4d; cursor: pointer; font-weight: 600; }
         .side-foot { border-top: 1px solid #22252c; padding-top: 20px; }
         .total-box { font-size: 18px; color: #fff; font-weight: 600; display: flex; justify-content: space-between; margin-bottom: 15px; }
-        .checkout-btn { width: 100%; padding: 15px; background: #0056ff; color: #fff; border: none; border-radius: 4px; font-weight: 700; font-size: 16px; cursor: pointer; transition: 0.3s; }
+        .checkout-btn { width: 100%; padding: 15px; background: #0056ff; color: #fff; border: none; border-radius: 4px; font-weight: 700; font-size: 16px; cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
         .checkout-btn:hover { background: #0044cc; }
+        
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 101; display: none; }
         .overlay.open { display: block; }
+
+        /* Footer */
+        footer { background: #07080a; padding: 40px 0; border-top: 1px solid #1f2833; text-align: center; color: #666; font-size: 14px; }
+        footer p { margin-bottom: 10px; }
+        footer a { color: #0056ff; text-decoration: none; }
+
+        /* Animație Încărcare */
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Responsive mobil */
+        @media(max-width: 768px) {
+            body { padding-top: 70px; }
+            .hero-content h1 { font-size: 28px; }
+            .hero-content p { font-size: 15px; }
+            nav { display: none; } /* Ascundem link-urile simple pe mobil pentru estetică */
+            .sidebar { width: 100%; right: -100%; }
+        }
     </style>
 </head>
 <body>
@@ -69,18 +122,65 @@
             <div class="logo-container">
                 <img src="IMG_7684.png" alt="LayerBond3D Logo" class="logo-img">
             </div>
-            <div class="cart-btn" onclick="toggleCart()">Coș (<span id="count">0</span>)</div>
+            <nav>
+                <a href="#catalog">Produse</a>
+                <a href="#beneficii">Beneficii</a>
+                <a href="#faq">Întrebări</a>
+            </nav>
+            <div class="cart-btn" onclick="toggleCart()">
+                <span>Coș</span> (<span id="count">0</span>)
+            </div>
         </div>
     </header>
 
-    <section class="hero-banner">
-        <div class="hero-text">ACCESORII PRACTICE. <span>DESIGN PERFECT.</span></div>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>LayerBond<span>3D</span></h1>
+            <p>Accesorii auto premium realizate prin imprimare 3D de înaltă precizie. Design inteligent, durabilitate maximă și potrivire perfectă pentru mașina ta.</p>
+            <a href="#catalog" class="cta-btn">Explorează Catalogul</a>
+        </div>
     </section>
 
-    <main class="container">
-        <h2 class="products-title">Catalog Produse Auto 3D</h2>
+    <section class="features" id="beneficii">
+        <div class="container">
+            <h2 class="section-title">De ce alegi <span>LayerBond3D</span>?</h2>
+            <div class="features-grid">
+                <div class="feature-box">
+                    <h3>Materiale Rezistente</h3>
+                    <p>Folosim filamente tehnice de calitate superioară, rezistente la temperaturile ridicate din interiorul mașinii pe timp de vară.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Potrivire OEM</h3>
+                    <p>Fiecare piesă este proiectată digital și testată riguros pentru a se integra perfect în spațiile dedicate ale autoturismului.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Comandă Rapidă</h3>
+                    <p>Îți configurezi coșul pe site, alegi culorile dorite, iar comanda ajunge instant pe WhatsApp-ul nostru pentru procesare.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="container shop-section" id="catalog">
+        <h2 class="section-title" style="text-align: center; margin-bottom: 50px;">Catalog Produse Auto</h2>
         <div class="grid" id="products-container"></div>
     </main>
+
+    <section class="faq-section" id="faq">
+        <div class="container">
+            <h2 class="section-title" style="text-align: center;">Întrebări <span>Frecvente</span></h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>Piesele rezistă la căldura din mașină?</h3>
+                    <p>Da! Produsele noastre expuse la temperaturi înalte sunt imprimate din materiale speciale (cum ar fi PETG sau ABS/ASA), care nu se deformează la soare precum plasticul standard PLA.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Pot solicita o altă culoare sau modificare?</h3>
+                    <p>Desigur. În momentul în care trimiți comanda pe WhatsApp, ne poți specifica orice preferință sau detaliu legat de personalizarea produsului ales.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <div class="sidebar" id="sidebar">
         <div class="side-head">
@@ -95,26 +195,36 @@
     </div>
     <div class="overlay" id="overlay" onclick="toggleCart()"></div>
 
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 LayerBond3D. Toate drepturile rezervate.</p>
+            <p>Proiectat pentru pasionații auto. Contact direct prin WhatsApp.</p>
+        </div>
+    </footer>
+
     <script>
+        // Catalogul exact mapat conform imaginilor trimise de tine
         const products = [
-            { id: 1, title: "Suport Telefon", desc: "Montare în grila de ventilație", price: 39.99, img: "IMG_7719.jpeg" }, 
-            { id: 2, title: "Organizator Consolă", desc: "Pentru depozitare eficientă", price: 50.00, img: "IMG_7720.jpeg" },
-            { id: 3, title: "Suport Pahare", desc: "Insert anti-alunecare", price: 79.99, img: "IMG_7721.jpeg" },
-            { id: 4, title: "Suport Chei", desc: "Loc dedicat pentru chei", price: 25.00, img: "IMG_7722.png" },
-            { id: 5, title: "Organizator Portbagaj", desc: "Fixare și organizare", price: 120.00, img: "IMG_7723.jpeg" },
-            { id: 6, title: "Suport OBD", desc: "Acces facil la portul OBD", price: 29.99, img: "IMG_7724.jpeg" },
-            { id: 7, title: "Suport MagSafe", desc: "Fixare sigură pentru încărcare", price: 59.99, img: "IMG_7725.jpeg" },
-            { id: 8, title: "Ramă Butoane", desc: "Personalizare și protecție", price: 45.00, img: "IMG_7726.jpeg" }
+            { id: 1, title: "Suport Telefon", desc: "Montare stabilă în grila de ventilație", price: 39.99, img: "IMG_7719.jpeg" }, 
+            { id: 2, title: "Organizator Consolă", desc: "Spațiu extra pentru depozitare eficientă", price: 50.00, img: "IMG_7720.jpeg" },
+            { id: 3, title: "Suport Pahare", desc: "Insert dedicat anti-alunecare", price: 79.99, img: "IMG_7721.jpeg" },
+            { id: 4, title: "Suport Chei", desc: "Loc dedicat ergonomic pentru cheie", price: 25.00, img: "IMG_7722.png" },
+            { id: 5, title: "Organizator Portbagaj", desc: "Sistem modular de fixare și organizare", price: 120.00, img: "IMG_7723.jpeg" },
+            { id: 6, title: "Suport OBD", desc: "Acces facil și protecție port OBD", price: 29.99, img: "IMG_7724.jpeg" },
+            { id: 7, title: "Suport MagSafe", desc: "Fixare magnetică sigură pentru încărcare", price: 59.99, img: "IMG_7725.jpeg" },
+            { id: 8, title: "Ramă Butoane", desc: "Personalizare consolă și protecție", price: 45.00, img: "IMG_7726.jpeg" }
         ];
 
         let cart = [];
 
         function renderProducts() {
             const container = document.getElementById('products-container');
-            container.innerHTML = products.map(p => `
-                <div class="card" id="p-${p.id}">
+            container.innerHTML = products.map((p, index) => `
+                <div class="card" id="p-${p.id}" style="animation-delay: ${index * 0.1}s">
                     <div>
-                        <img src="${p.img}" class="prod-img" alt="${p.title}">
+                        <div class="prod-img-wrapper">
+                            <img src="${p.img}" class="prod-img" alt="${p.title}">
+                        </div>
                         <h3 class="prod-title">${p.title}</h3>
                         <div class="prod-desc">${p.desc}</div>
                         <div class="prod-price">${p.price.toFixed(2)} RON</div>
@@ -169,7 +279,7 @@
         }
 
         function sendToWhatsApp() {
-            if(!cart.length) return alert("Coșul e gol!");
+            if(!cart.length) return alert("Coșul este gol!");
             let numarTelefon = "40725516346"; 
             let text = "Salut LayerBond3D! Doresc să plasez o comandă:\n\n";
             cart.forEach(item => {
@@ -183,6 +293,3 @@
     </script>
 </body>
 </html>
-
-
-    
